@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Edits - Projects Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: #08090c; color: #fff; overflow-x: hidden; }
+        
+        header { position: fixed; top: 0; width: 100%; padding: 25px 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(8, 9, 12, 0.9); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .logo img { height: 70px; }
+        
+        nav ul { display: flex; list-style: none; gap: 40px; }
+        nav ul li a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 16px; transition: 0.3s; }
+        nav ul li a:hover, nav ul li a.active { color: #38bdf8; }
+
+        .portfolio-container { padding: 140px 40px 80px 40px; max-width: 1400px; margin: 0 auto; }
+        .title { text-align: center; margin-bottom: 40px; }
+        .title h2 { font-size: 42px; }
+        .title h2 span { color: #38bdf8; }
+
+        /* Carousel Wrapper with Controls */
+        .slider-wrapper { position: relative; display: flex; align-items: center; }
+        
+        .carousel-track {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+
+        .card { 
+            min-width: 340px; 
+            background: #111319; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.08); 
+            cursor: pointer; 
+            transition: 0.3s; 
+            flex-shrink: 0; 
+        }
+        .card:hover { transform: translateY(-8px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2); }
+        .card video { width: 100%; height: 220px; object-fit: cover; }
+        .card-info { padding: 20px; }
+        .card-info h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
+        .card-info .tags { font-size: 13px; color: #38bdf8; margin-bottom: 12px; font-weight: 600; }
+        .card-info .meta { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; }
+        .rating { color: #f59e0b; font-weight: 700; }
+
+        .nav-btn {
+            position: absolute;
+            background: rgba(56, 189, 248, 0.8);
+            color: #08090c;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: #38bdf8; transform: scale(1.1); }
+        .prev-btn { left: -25px; }
+        .next-btn { right: -25px; }
+
+        /* Lightbox Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 2000; justify-content: center; align-items: center; }
+        .modal video { max-width: 85%; max-height: 80%; border-radius: 12px; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+        .modal .close { position: absolute; top: 30px; right: 40px; font-size: 40px; color: #fff; cursor: pointer; }
+
+        .whatsapp-btn { position: fixed; bottom: 35px; right: 35px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 999; text-decoration: none; }
+        footer { text-align: center; padding: 30px; background: #050507; color: #38bdf8; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 80px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="logo.png" alt="HR Edits Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="pricing.html">Pricing & Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="portfolio-container">
+        <div class="title">
+            <h2>Video <span>Portfolio</span></h2>
+            <p style="color:#94a3b8; margin-top: 10px;">Hover to Preview • Click Video for Full Screen</p>
+        </div>
+
+        <div class="slider-wrapper">
+            <button class="nav-btn prev-btn" onclick="scrollSlider(-360)"><i class="fa-solid fa-chevron-left"></i></button>
+
+            <div class="carousel-track" id="track" onmouseenter="stopAutoScroll()" onmouseleave="startAutoScroll()">
+                <!-- 6 Distinct Projects -->
+                <div class="card" onclick="openModal('project1.mp4')">
+                    <video src="project1.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>PUBG vs Free Fire Battle</h3>
+                        <div class="tags">Motion Graphics • Gaming Reel</div>
+                        <div class="meta"><span>Price: $20 (~5,500 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 9.8/10</span></div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('project2.mp4')">
+                    <video src="project2.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>Funny Vlog & SFX Edit</h3>
+                        <div class="tags">Vlog Edit • Dynamic Zoom</div>
+                        <div class="meta"><span>Price: $35 (~9,800 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 9.5/10</span></div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('project3.mp4')">
+                    <video src="project3.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>Commercial Social Promo</h3>
+                        <div class="tags">Cinematic • Color Grading</div>
+                        <div class="meta"><span>Price: $50 (~14,000 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 10/10</span></div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('project4.mp4')">
+                    <video src="project4.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>YouTube Gaming Highlights</h3>
+                        <div class="tags">Fast Cuts • SFX Beats</div>
+                        <div class="meta"><span>Price: $25 (~7,000 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 9.6/10</span></div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('project5.mp4')">
+                    <video src="project5.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>Instagram Aesthetic Reel</h3>
+                        <div class="tags">Smooth Transitions • Color Grade</div>
+                        <div class="meta"><span>Price: $30 (~8,400 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 9.9/10</span></div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('project6.mp4')">
+                    <video src="project6.mp4" muted loop onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+                    <div class="card-info">
+                        <h3>Documentary Style Promo</h3>
+                        <div class="tags">Sound Design • Motion Titles</div>
+                        <div class="meta"><span>Price: $60 (~16,800 PKR)</span> <span class="rating"><i class="fa-solid fa-star"></i> 10/10</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-btn next-btn" onclick="scrollSlider(360)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="videoModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <video id="modalVideo" controls></video>
+    </div>
+
+    <a href="https://wa.me/923303354950?text=Hi%20HR%20Edits,%20I%20am%20interested%20in%20your%20video%20editing%20services!" class="whatsapp-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <footer><p>&copy; 2026 HR Edit. All rights reserved.</p></footer>
+
+    <script>
+        const track = document.getElementById('track');
+        let scrollInterval;
+
+        function scrollSlider(amount) {
+            track.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: 360, behavior: 'smooth' });
+                }
+            }, 3000);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(scrollInterval);
+        }
+
+        startAutoScroll();
+
+        function openModal(src) {
+            stopAutoScroll();
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.src = src;
+            modal.style.display = 'flex';
+            video.play();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.pause();
+            modal.style.display = 'none';
+            startAutoScroll();
+        }
+    </script>
+</body>
+</html>
