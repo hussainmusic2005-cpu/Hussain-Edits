@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — HR Edits</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root { --bg: #090a0f; --card: #12151e; --accent: #38bdf8; --text: #cbd5e1; }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
+  body { background: var(--bg); color: #fff; }
+
+  /* Header / Navbar */
+  .site-header { position: fixed; top: 0; width: 100%; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(9, 10, 15, 0.95); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+  .brand img { height: 42px; width: auto; object-fit: contain; }
+  
+  .main-nav { display: flex; gap: 25px; align-items: center; }
+  .main-nav a { color: var(--text); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 15px; }
+  .main-nav a:hover, .main-nav a.active { color: var(--accent); }
+  .nav-btn { background: var(--accent); color: #000 !important; padding: 10px 22px; border-radius: 50px; font-weight: 700 !important; }
+
+  .menu-toggle { display: none; font-size: 24px; color: #fff; cursor: pointer; }
+
+  .portfolio-wrap { max-width: 1200px; margin: 0 auto; padding: 130px 5% 60px; }
+  .page-title { text-align: center; margin-bottom: 40px; }
+  .page-title h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+  .page-title p { color: var(--text); }
+
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+  .video-card { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: 0.3s; }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+  .video-card video { width: 100%; height: auto; display: block; background: #000; }
+  .video-info { padding: 20px; }
+  .video-info h3 { font-size: 18px; margin-bottom: 5px; }
+  .video-info p { color: var(--accent); font-size: 13px; font-weight: 600; }
+
+  .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.4); z-index: 999; }
+
+  footer { text-align: center; padding: 30px 5%; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text); font-size: 14px; margin-top: 40px; }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .main-nav { position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px); background: var(--bg); flex-direction: column; padding: 40px 20px; transition: 0.3s; justify-content: flex-start; }
+    .main-nav.active { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <img src="logo.png" alt="HR Edits Logo">
+  </a>
+  <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></div>
+  <nav class="main-nav" id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="contact.html" class="nav-btn">Get Started</a>
+  </nav>
+</header>
+
+<div class="portfolio-wrap">
+  <div class="page-title">
+    <h1>Our Recent Work</h1>
+    <p>Check out some of our video editing & post-production projects.</p>
+  </div>
+
+  <div class="video-grid">
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 01</h3>
+        <p>Commercial & Reverse Trending / Short Edit</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 02</h3>
+        <p>Social Media video / Youtube Gaming Style Motion Graphics.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 03</h3>
+        <p>Motion Graphics & COLOR grading Convert Idea INTO video out of THEIR EXCEPTATION'S AND REALLY GOOD {CLENT RATE 9.9/10}</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 04</h3>
+        <p>Funny gaming content Edit.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project5.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 05</h3>
+        <p>Smooth Edit & Color Grading</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls preload="metadata">
+        <source src="project6.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h3>Project 06</h3>
+        <p>Social Media Ads Related video & Motion Graphics.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/923303354950" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<footer>
+  <p>© 2026 HR Edits. All rights reserved.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+</body>
+</html>
